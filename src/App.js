@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, useHistory } from 'react-router-dom';
+import Guru from './component/Tguru';
+import Loginpage from './component/loginform'
+import Register from './component/register'
+import { Navbar } from 'react-bootstrap';
+import './css/Navbar.css'; // Import the CSS file
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="app-container">
+        <nav className="navbar">
+          <div className="navbar-logo">
+            <Link to="/gurus">Data Pengajar</Link>
+          </div>
+          <ul className="navbar-links">
+            <li>
+              <Link to="/gurus">Guru</Link>
+            </li>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+            <li>
+              <Link to="/register">Register</Link>
+            </li>
+          </ul>
+        </nav>
+
+        <Routes>
+          <Route path="/gurus" element={<Guru />} />
+          <Route path="/login" element={<Loginpage />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
